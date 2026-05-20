@@ -31,6 +31,15 @@ def load_dataset(dataset_path, target_name):
 
     return X, y
 
+def feat_names(dataset_path, target_name):
+    feat_names = None
+    with open(dataset_path, "r") as f:
+        feature_names = f.readline().strip().split(",")
+
+    feature_names.remove(target_name)
+    return feature_names
+
+
 # useful function to compute metrics
 def compute_metrics(true, probs, threshold=0.5):
     preds = (probs >= threshold).astype(int)
